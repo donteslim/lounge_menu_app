@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Lounge — Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="login-view" class="admin-body" style="display:none;">
+    <div class="brand brand-standalone">
+      <span class="brand-mark">&#10022;</span>
+      <span class="brand-name">The Lounge</span>
+    </div>
+    <div class="login-card">
+      <h2>Admin Login</h2>
+      <form id="login-form">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <p class="error-msg" id="login-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <div id="dashboard-view" class="admin-body" style="display:none;">
+    <div class="admin-header">
+      <h1>Menu Management</h1>
+      <div class="accordion-actions">
+        <button class="btn btn-secondary btn-small" id="change-pw-btn">Change Password</button>
+        <button class="btn btn-secondary btn-small" id="logout-btn">Log Out</button>
+        <a class="btn btn-secondary btn-small btn-link" href="/">View Menu</a>
+      </div>
+    </div>
+
+    <div id="change-pw-card" class="new-section-card" style="display:none;">
+      <h3>Change Password</h3>
+      <form id="change-pw-form">
+        <div class="two-col">
+          <div class="field">
+            <label>Current Password</label>
+            <input type="password" id="cp-current" required />
+          </div>
+          <div class="field">
+            <label>New Password (min 8 chars)</label>
+            <input type="password" id="cp-new" required minlength="8" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-small">Update Password</button>
+        <button type="button" class="btn btn-secondary btn-small" id="cp-cancel">Cancel</button>
+        <p class="error-msg" id="cp-error"></p>
+        <p class="success-msg" id="cp-success"></p>
+      </form>
+    </div>
+
+    <div class="new-section-card">
+      <h3>Add New Section</h3>
+      <form id="new-section-form">
+        <div class="field">
+          <label>Section Name</label>
+          <input type="text" id="ns-name" placeholder="e.g. Cocktails" required />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea id="ns-description" placeholder="Describe what's sold in this section"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-small">Add Section</button>
+        <p class="error-msg" id="ns-error"></p>
+      </form>
+    </div>
+
+    <div id="accordion-container">
+      <p class="loading">Loading sections...</p>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
