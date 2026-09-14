@@ -9,7 +9,7 @@
   }
 
   function formatPrice(value) {
-    return '$' + Number(value).toFixed(2);
+    return '₦' + Number(value).toFixed(2);
   }
 
   function renderProductCard(product) {
