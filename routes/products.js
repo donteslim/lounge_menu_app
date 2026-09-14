@@ -2,6 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 const { readDb, writeDb } = require('../db');
 const { requireAdmin } = require('../middleware/auth');
+const { deleteUploadedFile } = require('../middleware/upload');
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ function validatePrices(mainPrice, discountPrice) {
 }
 
 router.post('/', requireAdmin, (req, res) => {
-  const { sectionId, name, mainPrice, discountPrice, description } = req.body || {};
+  const { sectionId, name, mainPrice, discountPrice, description, imageUrl } = req.body || {};
   if (!sectionId) {
     return res.status(400).json({ error: 'sectionId is required' });
   }
@@ -59,6 +60,7 @@ router.post('/', requireAdmin, (req, res) => {
         ? null
         : Number(discountPrice),
     description: (description || '').trim(),
+    imageUrl: imageUrl || null,
     order: maxOrder + 1,
   };
   db.products.push(product);
@@ -67,7 +69,7 @@ router.post('/', requireAdmin, (req, res) => {
 });
 
 router.put('/:id', requireAdmin, (req, res) => {
-  const { name, mainPrice, discountPrice, description, sectionId, order } = req.body || {};
+  const { name, mainPrice, discountPrice, description, sectionId, order, imageUrl } = req.body || {};
   const db = readDb();
   const product = db.products.find((p) => p.id === req.params.id);
   if (!product) {
@@ -101,6 +103,12 @@ router.put('/:id', requireAdmin, (req, res) => {
   }
   if (description !== undefined) product.description = description.trim();
   if (order !== undefined && Number.isFinite(order)) product.order = order;
+  if (imageUrl !== undefined) {
+    if (imageUrl !== product.imageUrl) {
+      deleteUploadedFile(product.imageUrl);
+    }
+    product.imageUrl = imageUrl || null;
+  }
 
   writeDb(db);
   res.json(product);
@@ -112,8 +120,9 @@ router.delete('/:id', requireAdmin, (req, res) => {
   if (idx === -1) {
     return res.status(404).json({ error: 'Product not found' });
   }
-  db.products.splice(idx, 1);
+  const [removed] = db.products.splice(idx, 1);
   writeDb(db);
+  deleteUploadedFile(removed.imageUrl);
   res.json({ success: true });
 });
 

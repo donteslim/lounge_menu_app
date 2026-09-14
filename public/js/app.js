@@ -25,6 +25,13 @@
 
     return `
       <div class="product-card">
+        <div class="product-media">
+          ${
+            product.imageUrl
+              ? `<img src="${escapeHtml(product.imageUrl)}" alt="${escapeHtml(product.name)}" loading="lazy" />`
+              : `<div class="media-placeholder" aria-hidden="true">&#127864;</div>`
+          }
+        </div>
         <div class="product-top">
           <h3>${escapeHtml(product.name)}</h3>
           <div class="price-block">${priceHtml}</div>
@@ -42,6 +49,7 @@
     return `
       <div class="section-panel ${index === 0 ? 'active' : ''}" data-panel="${section.id}">
         <div class="section-heading">
+          ${section.imageUrl ? `<img src="${escapeHtml(section.imageUrl)}" alt="" class="section-banner" loading="lazy" />` : ''}
           <h2>${escapeHtml(section.name)}</h2>
           ${section.description ? `<p>${escapeHtml(section.description)}</p>` : ''}
         </div>

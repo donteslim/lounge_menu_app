@@ -4,19 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Lounge Menu</title>
+  <link rel="icon" href="images/logo-placeholder.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="site-header-bar">
-      <div class="brand">
-        <span class="brand-mark">&#10022;</span>
+      <a class="brand" href="/">
+        <img src="images/logo-placeholder.svg" alt="The Lounge logo" class="brand-logo" />
         <span class="brand-name">The Lounge</span>
-      </div>
+      </a>
       <a class="btn btn-admin" href="/admin">Admin Login</a>
     </div>
-    <p class="tagline">Our menu, tonight</p>
   </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="hero-badge">&#10022; Now Open</span>
+        <!-- EDIT ME: replace with your lounge's real headline -->
+        <h1 class="hero-headline">An Upscale Lounge Experience, All Night Long</h1>
+        <!-- EDIT ME: replace with your lounge's real tagline/description -->
+        <p class="hero-subtext">Handcrafted cocktails, curated wines, and a menu built for the night. Browse tonight's full menu below.</p>
+        <a href="#tabs" class="btn btn-primary hero-cta">View Menu</a>
+      </div>
+      <div class="hero-media">
+        <!-- EDIT ME: replace public/images/hero-placeholder.svg with your own photo -->
+        <img src="images/hero-placeholder.svg" alt="" class="hero-image" />
+      </div>
+    </div>
+  </section>
 
   <nav class="tabs" id="tabs"></nav>
 

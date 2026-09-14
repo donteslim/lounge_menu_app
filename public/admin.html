@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Lounge — Admin</title>
+  <link rel="icon" href="images/logo-placeholder.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div id="login-view" class="admin-body" style="display:none;">
     <div class="brand brand-standalone">
-      <span class="brand-mark">&#10022;</span>
+      <img src="images/logo-placeholder.svg" alt="The Lounge logo" class="brand-logo" />
       <span class="brand-name">The Lounge</span>
     </div>
     <div class="login-card">
@@ -69,6 +73,13 @@
         <div class="field">
           <label>Description</label>
           <textarea id="ns-description" placeholder="Describe what's sold in this section"></textarea>
+        </div>
+        <div class="field">
+          <label>Section Image (optional)</label>
+          <div class="image-field-row">
+            <img id="ns-image-preview" class="image-preview" style="display:none;" alt="" />
+            <input type="file" id="ns-image" accept="image/png,image/jpeg,image/webp,image/gif" />
+          </div>
         </div>
         <button type="submit" class="btn btn-primary btn-small">Add Section</button>
         <p class="error-msg" id="ns-error"></p>

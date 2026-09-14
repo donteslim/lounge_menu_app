@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="The Lounge logo placeholder">
+  <circle cx="32" cy="32" r="31" fill="#1e1a17" stroke="#c9a34e" stroke-width="2"/>
+  <path d="M32 15c-6.5 0-11.5 5.2-11.5 11.7 0 6 4.2 10.4 9 11.5v6.3h-4.2v3h13.4v-3h-4.2v-6.3c4.8-1.1 9-5.5 9-11.5C43.5 20.2 38.5 15 32 15z" fill="none" stroke="#e2c98a" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="32" cy="26.5" r="4.2" fill="#c9a34e"/>
+</svg>

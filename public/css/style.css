@@ -9,11 +9,17 @@
   --border: #382f28;
   --danger: #d16060;
   --success: #6fae7a;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  --font-display: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,14 +29,21 @@ body {
   min-height: 100vh;
 }
 
+h1, h2, h3, h4, .brand-name, .hero-headline {
+  font-family: var(--font-display);
+}
+
 header.site-header {
-  padding: 1.5rem 1.5rem 1.75rem;
+  padding: 1.1rem 1.5rem;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .site-header-bar {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -42,12 +55,16 @@ header.site-header {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
 }
 
-.brand-mark {
-  color: var(--gold);
-  font-size: 1.3rem;
-  line-height: 1;
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .brand-name {
@@ -61,13 +78,6 @@ header.site-header {
 .brand-standalone {
   justify-content: center;
   margin-bottom: 2rem;
-}
-
-header.site-header .tagline {
-  text-align: center;
-  color: var(--text-muted);
-  margin: 0.9rem 0 0;
-  font-style: italic;
 }
 
 .btn-admin {
@@ -86,6 +96,73 @@ header.site-header .tagline {
   color: #1a1611;
 }
 
+.hero {
+  padding: 3rem 1.25rem 4rem;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-copy {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+
+.hero-media {
+  flex: 1 1 360px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--gold);
+  color: var(--gold-soft);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.hero-headline {
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  line-height: 1.1;
+  color: var(--gold-soft);
+  margin: 0 0 1rem;
+}
+
+.hero-subtext {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 0 1.75rem;
+}
+
+.hero-cta {
+  padding: 0.8rem 1.9rem;
+  font-size: 1rem;
+  text-decoration: none;
+  width: auto;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;
@@ -94,6 +171,7 @@ header.site-header .tagline {
   padding: 1.5rem 1rem 0;
   max-width: 900px;
   margin: 0 auto;
+  scroll-margin-top: 90px;
 }
 
 .tab-btn {
@@ -162,6 +240,14 @@ main {
   line-height: 1.5;
 }
 
+.section-banner {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -181,6 +267,34 @@ main {
   transform: translateY(-3px);
   border-color: var(--gold);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
+.product-media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  background: var(--bg-elevated);
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.media-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
 }
 
 .product-card .product-top {
@@ -407,6 +521,52 @@ main {
   margin-top: 0.2rem;
 }
 
+.accordion-header-main,
+.product-row-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.thumb-img,
+.thumb-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.thumb-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.image-field-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.image-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.btn-remove-image {
+  margin-top: 0.35rem;
+}
+
 .accordion-body {
   padding: 1.25rem;
   display: none;
@@ -477,12 +637,66 @@ main {
   gap: 1rem;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hero-subtext {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    gap: 0.4rem;
+    padding: 1.25rem 1rem 0;
+  }
+  .tab-btn {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.92rem;
+  }
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .accordion-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 1rem 2.5rem;
+  }
+  .hero-headline {
+    font-size: clamp(1.6rem, 8vw, 2.1rem);
+  }
+  .hero-subtext {
+    font-size: 0.95rem;
+  }
+  .hero-cta {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-image {
+    max-width: 260px;
+  }
   .two-col {
     grid-template-columns: 1fr;
   }
   .product-row {
     flex-direction: column;
+  }
+  .product-row-main {
+    width: 100%;
   }
   .site-header-bar {
     flex-direction: column;
@@ -490,6 +704,18 @@ main {
   }
   .brand-name {
     font-size: 1.3rem;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  .accordion-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .accordion-actions {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 
